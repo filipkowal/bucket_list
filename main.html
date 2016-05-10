@@ -1,0 +1,122 @@
+<head>
+  <title>Bucket List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+	<div class="container-fluid">
+
+	<header>
+		<h1>Bucket List</h1>
+	</header>
+	
+	<nav>
+		{{> nav}}
+	</nav>
+	{{> insertChallange}}
+	{{> challangeList}}
+	</div>
+
+</body>
+
+<template name="nav">
+	{{listView}}
+	<button type="button" class="btn btn-primary listView">Lista wyzwań</button>
+	<button type="button" class="btn btn-primary insertView">+</button><br/>
+
+<!-- 	<ul>
+  		<li class="listView">Lista wyzwań</li>
+  		<li class="insertView">Dodaj wyzwanie</li>
+  	</ul> -->
+</template>
+
+<template name="insertChallange">
+	{{#if insertView}}
+		<br/>
+		<img src={{image}}><br/>
+		<form class="insertChallange">
+		 		<!-- <input type="text" name="challangeName" placeholder="Nazwa wyzwania" /><br/> -->
+		 		<div class="form-group">
+				    <label for="name">Nazwa wyzwania</label>
+				    <input type="text" name="challangeName" class="form-control" id="name" placeholder="Rysy">
+				 </div>
+		 		<!-- <input type="number" name="latitude" step="0.000001" placeholder="Szerokość geograficzna" /> -->
+		 		<div class="form-group">
+				    <label for="name">Szerokość geograficzna</label>
+				    <input type="number" name="latitude" step="0.000001" class="form-control" id="name" placeholder="49.0985">
+				 </div>
+		 		<!-- <input type="number" name="longitude" step="0.000001" placeholder="Wysokość geograficzna" /><br/> -->
+		 		<div class="form-group">
+				    <label for="name">Długość geograficzna</label>
+				    <input type="number" name="logitude" step="0.000001" class="form-control" id="name" placeholder="28.4803">
+				 </div>
+				<div class="form-group">
+					<label for="opis">Opis</label>
+					<textarea class="form-control" rows="3" name="challangeDescription" id="opis" placeholder="Zdobądź szczyt w mniej niż 4 godziny."></textarea>
+				</div>
+		 		<!-- <textarea rows="4" cols="50" name="challangeDescription" placeholder="Opis wyzwania"></textarea><br/><br/> -->
+		 		
+<!-- 		 		<input type="submit" value="Dodaj wyzwanie" class="submitChallange">
+ -->		 	
+ 				<button type="button" class="btn btn-default getpicture">Dodaj zdjęcie</button>	
+ 				<button class="btn btn-success submitChallange" type="submit">Dodaj wyzwanie</button><br/> <br/>
+	 	</form>
+
+ 	{{else}}
+<!--  		Pusto tu. Dodaj wyzwanie.
+ --> 	{{/if}}
+</template>
+
+<template name="challangeList">
+	{{#if listView}}
+		<br/>
+		<table class="table table-striped">
+		  <tbody>
+		  	{{#each showChallanges}}
+		  	<tr>
+		  		<td>
+		  			<h3>{{challangeName}}</h3> 
+					Współrzędne: {{latitude}}N {{longitude}}E <br/>
+					Opis: {{challangeDescription}} <br/><br/>
+					<!-- zdjecie --><img src={{image}}><!-- <br/> -->
+					<!-- zdjecie1: --><img src={{image1}}><!-- <br/> -->
+					<!-- Podejmuję wyzwanie <input type="checkbox" name="challangeAccepted" checked="{{accepted}}" class="accepted"><br/>
+		 			Ukończyłem wyzwanie <input type="checkbox" name="challangeAcomplished" checked="{{accomplished}}" class="accomplished"><br/>
+		 			 -->
+		 			{{#if accomplished}}
+		  				<button type="button" class="btn btn-info accomplished accepted">&#8634;</button>
+		  			{{/if}}
+		 			{{#unless accomplished}}
+		 			{{#unless accepted}}
+		 			<button type="button" class="btn btn-default accepted">Podejmij</button>
+		 			{{/unless}}
+		 			{{#if accepted}}
+		 			<button type="button" class="btn btn-info accomplished getpicture">Zrób zdjęcie</button>
+		 			{{/if}}
+		 			{{/unless}}
+		 			{{#if accomplished}}
+		 			<button type="button" class="btn btn-success">Wyzwanie ukończone!</button>
+		 			{{/if}}
+		 			<button type="button" class="btn btn-danger delete">Usuń</button>
+		  		</td>
+		  	</tr>
+		  	{{/each}}
+		  </tbody>
+		</table>
+		<!-- <ul>
+			{{#each showChallanges}}
+			<li>
+				{{challangeName}} <button class="delete">&times;</button><br/>
+				Współrzędne: {{latitude}}N {{longitude}}E <br/>
+				Opis: {{challangeDescription}} <br/>
+				zdjecie:<img src={{image}}><br/>
+				zdjecie1:<img src={{image1}}><br/>
+				Podejmuję wyzwanie <input type="checkbox" name="challangeAccepted" checked="{{accepted}}" class="accepted"><br/>
+	 			Ukończyłem wyzwanie <input type="checkbox" name="challangeAcomplished" checked="{{accomplished}}" class="accomplished"><br/>
+	 			<button type="button" class="btn btn-default">Podejmuję</button>
+	 			<button class="getpicture">Dodaj zdjęcie</button><br/>
+			</li>
+			{{/each}}
+		</ul> -->
+ 	{{/if}}
+</template>
