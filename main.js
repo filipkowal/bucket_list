@@ -4,6 +4,10 @@
 // import './main.html';
 
 // import { Challanges } from '../imports/api/challanges.js';
+// if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//     WebView.setWebContentsDebuggingEnabled(true);
+// }
+
 Challanges = new Mongo.Collection('challanges');
 
 
@@ -52,10 +56,12 @@ if (Meteor.isClient) {
       function onSuccess(imageURI) {
           console.log("Wczytuje kamere");
           var image = document.getElementById('myImage');
+          // console.log("imageURI": imageURI);
           console.log("image:", image);
           image.src = imageURI;
           console.log("image.src:", image.src);
           image = WebAppLocalServer.localFileSystemUrl(image);
+          console.log("image after for meteor:")
           Challanges.update(this._id, { $set: { image: image }});
       }
 
@@ -90,6 +96,9 @@ if (Meteor.isClient) {
         event.target.latitude.value = "";
         event.target.longitude.value = "";
         event.target.challangeDescription.value = "";
+
+        alert("Dodano nowe wyzwanie");
+        Session.set('view', 'listView');
     },
     'click .getpicture'() {
       navigator.camera.getPicture(onSuccess, onFail, { quality: 50,

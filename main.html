@@ -6,15 +6,19 @@
 <body>
 	<div class="container-fluid">
 
-	<header>
+	<div class="row header">
 		<h1>Bucket List</h1>
-	</header>
+		<nav>
+			{{> nav}}
+		</nav><br/>
+	</div>
 	
-	<nav>
-		{{> nav}}
-	</nav>
-	{{> insertChallange}}
-	{{> challangeList}}
+	
+
+	<section>
+		{{> insertChallange}}
+		{{> challangeList}}
+	</section>
 	</div>
 
 </body>
@@ -35,31 +39,24 @@
 		<br/>
 		<img src={{image}}><br/>
 		<form class="insertChallange">
-		 		<!-- <input type="text" name="challangeName" placeholder="Nazwa wyzwania" /><br/> -->
 		 		<div class="form-group">
 				    <label for="name">Nazwa wyzwania</label>
 				    <input type="text" name="challangeName" class="form-control" id="name" placeholder="Rysy">
 				 </div>
-		 		<!-- <input type="number" name="latitude" step="0.000001" placeholder="Szerokość geograficzna" /> -->
 		 		<div class="form-group">
-				    <label for="name">Szerokość geograficzna</label>
+				    <label for="latitude">Szerokość geograficzna</label>
 				    <input type="number" name="latitude" step="0.000001" class="form-control" id="name" placeholder="49.0985">
 				 </div>
-		 		<!-- <input type="number" name="longitude" step="0.000001" placeholder="Wysokość geograficzna" /><br/> -->
 		 		<div class="form-group">
-				    <label for="name">Długość geograficzna</label>
-				    <input type="number" name="logitude" step="0.000001" class="form-control" id="name" placeholder="28.4803">
+				    <label for="longitude">Długość geograficzna</label>
+				    <input type="number" name="longitude" step="0.000001" class="form-control" id="name" placeholder="28.4803">
 				 </div>
 				<div class="form-group">
-					<label for="opis">Opis</label>
+					<label for="challangeDescription">Opis</label>
 					<textarea class="form-control" rows="3" name="challangeDescription" id="opis" placeholder="Zdobądź szczyt w mniej niż 4 godziny."></textarea>
 				</div>
-		 		<!-- <textarea rows="4" cols="50" name="challangeDescription" placeholder="Opis wyzwania"></textarea><br/><br/> -->
-		 		
-<!-- 		 		<input type="submit" value="Dodaj wyzwanie" class="submitChallange">
- -->		 	
  				<button type="button" class="btn btn-default getpicture">Dodaj zdjęcie</button>	
- 				<button class="btn btn-success submitChallange" type="submit">Dodaj wyzwanie</button><br/> <br/>
+ 				<button type="submit" class="btn btn-success submitChallange" >Dodaj wyzwanie</button><br/> <br/>
 	 	</form>
 
  	{{else}}

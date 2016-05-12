@@ -1,5 +1,14 @@
-header {
-	text-align:center;
+.header {
+/*	background: linear-gradient(180deg, #6a3093, white);
+*/	background-image: url(matterhorn.jpg);
+/*	background-color: grey;
+*/	text-align: center;
+	/*color: white;
+	text-transform: color: #eee; font: 15px Helvetica, Arial, Sans-Serif;
+	     -webkit-transition: all 0.12s ease-out;
+	     -moz-transition: all 0.12s ease-out;
+	     -o-transition: all 0.12s ease-out;
+	text-shadow: 3px 3px 3px #333;*/
 }
 
 nav {
@@ -9,4 +18,19 @@ nav {
 nav li {
 	list-style-type: none;
 	display: inline-block;
+}
+
+.container-fluid {
+	padding: 0;
+}
+
+section {
+	margin: 0 15px 15px 15px;
+	background-image: url(matterhorn.jpg);
+}
+body {
+	padding-top: 0;
+}
+.col-xs-12 {
+	background-color: grey;
 }
