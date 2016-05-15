@@ -25,13 +25,21 @@
 
 <template name="nav">
 	{{listView}}
-	<button type="button" class="btn btn-primary listView">Lista wyzwań</button>
-	<button type="button" class="btn btn-primary insertView">+</button><br/>
-
-<!-- 	<ul>
-  		<li class="listView">Lista wyzwań</li>
-  		<li class="insertView">Dodaj wyzwanie</li>
-  	</ul> -->
+	
+<!-- 	<button type="button" class="btn btn-primary listView">Lista wyzwań</button>
+	<button type="button" class="btn btn-primary insertView">&#43;</button><br/> -->
+	<!-- <div class="row menu"> -->
+		<!-- <div class="col-xs-2">Lista zadań</div>
+		<div class="col-xs-2 col-md-4">Filtr<input type="checkbox" id="demo"/>
+		<label for="demo">Filtr</label></div>
+ -->		<!-- <div class="col-xs-6 col-sm-4 lista">Lista zadań</div>
+  			<div class="col-xs-6 col-sm-4 filtr">Filtr</div>
+	</div> -->
+	<!-- <div class="menu">
+		<div class="sort">sortuj</div>
+		<div class="add"></div>
+		<div class="filter">filtr</div>
+	</div> -->
 </template>
 
 <template name="insertChallange">
@@ -55,8 +63,12 @@
 					<label for="challangeDescription">Opis</label>
 					<textarea class="form-control" rows="3" name="challangeDescription" id="opis" placeholder="Zdobądź szczyt w mniej niż 4 godziny."></textarea>
 				</div>
- 				<button type="button" class="btn btn-default getpicture">Dodaj zdjęcie</button>	
- 				<button type="submit" class="btn btn-success submitChallange" >Dodaj wyzwanie</button><br/> <br/>
+				{{#if image}}
+					<img src={{image}} class="challangeImage"><br/><br/>
+				{{/if}}
+ 				<button type="button" class="btn btn-default getpicture">Dodaj zdjęcie</button>	<br/><br/>
+ 				<button type="button" class="btn btn-default listView">Wróć</button>
+ 				<button type="submit" class="btn btn-success submitChallange" >Dodaj wyzwanie</button><br/>
 	 	</form>
 
  	{{else}}
@@ -66,33 +78,71 @@
 
 <template name="challangeList">
 	{{#if listView}}
-		<br/>
+		{{#if Template.subscriptionsReady}}
+			{{defaultData}}
+		{{/if}}
+	
+		
+		<div class="filter">
+			<!-- Filtr:  --> 
+			<!-- <form class="filter">
+			<input type="radio" name="filter" value="0" checked="true"> wszystkie
+			<input type="radio" name="filter" value="100" checked="false"> 100 km 
+			<input type="radio" name="filter" value="10" checked="false"> 10 km
+			<input type="radio" name="filter" value="1" checked="false"> 1 km 
+			</form> -->
+<!-- 			<button type="button" class="btn btn-default one">1 km</button>
+			<button type="button" class="btn btn-default ten">10 km</button>
+			<button type="button" class="btn btn-default hudred">100 km</button>
+			<button type="button" class="btn btn-default all">&times;</button> -->
+			<form class="form-horizontal createpost" role="form" id="createpost">
+		        <div class="form-group form-group-lg">
+			            <!-- <div class="col-sm-10"> -->
+			                <select class="form-control">
+			                    <option value="9999999999">wszystkie</option>
+			                    <option value="1">1 km</option>
+			                    <option value="10">10 km</option>
+			                    <option value="100">100 km</option>
+			                </select>
+			            <!-- </div> -->
+			        </div>
+			</form>
+		</div>
+		
 		<table class="table table-striped">
 		  <tbody>
-		  	{{#each showChallanges}}
 		  	<tr>
+		  		<td class="add">
+		  			Dodaj wyzwanie<br/>
+		  			+
+		  			<br/>
+		  		</td>
+		  	</tr>
+		  	{{#each showChallanges}}
+		  	<tr class="{{#if accepted}}info{{/if}}">
 		  		<td>
-		  			<h3>{{challangeName}}</h3> 
-					Współrzędne: {{latitude}}N {{longitude}}E <br/>
+		  			<h3><p class="{{#if accepted}}name{{/if}}">{{challangeName}}<small>   {{distance}} km</small></p> {{#if accepted}} <div class="active"><small>[Aktywne]</small></div>{{/if}}</h3> 
+					Współrzędne: {{latitude}} {{longitude}} <br/>
 					Opis: {{challangeDescription}} <br/><br/>
-					<!-- zdjecie --><img src={{image}}><!-- <br/> -->
-					<!-- zdjecie1: --><img src={{image1}}><!-- <br/> -->
+					{{#if image}}
+					<img src={{image}} class="challangeImage"><br/><br/>
+					{{/if}}
 					<!-- Podejmuję wyzwanie <input type="checkbox" name="challangeAccepted" checked="{{accepted}}" class="accepted"><br/>
 		 			Ukończyłem wyzwanie <input type="checkbox" name="challangeAcomplished" checked="{{accomplished}}" class="accomplished"><br/>
 		 			 -->
 		 			{{#if accomplished}}
-		  				<button type="button" class="btn btn-info accomplished accepted">&#8634;</button>
+		  				<button type="button" class="btn btn-info accomplished">&#8634;</button>
 		  			{{/if}}
 		 			{{#unless accomplished}}
-		 			{{#unless accepted}}
-		 			<button type="button" class="btn btn-default accepted">Podejmij</button>
-		 			{{/unless}}
-		 			{{#if accepted}}
-		 			<button type="button" class="btn btn-info accomplished getpicture">Zrób zdjęcie</button>
-		 			{{/if}}
+		 				{{#unless accepted}}
+		 					<button type="button" class="btn btn-default accepted">Podejmij</button>
+		 				{{/unless}}
+		 				{{#if accepted}}
+		 				<button type="button" class="btn btn-info accepted accomplished getpicture">Zrób zdjęcie by ukończyć</button>
+		 				{{/if}}
 		 			{{/unless}}
 		 			{{#if accomplished}}
-		 			<button type="button" class="btn btn-success">Wyzwanie ukończone!</button>
+		 				<button type="button" class="btn btn-success">Wyzwanie ukończone!</button>
 		 			{{/if}}
 		 			<button type="button" class="btn btn-danger delete">Usuń</button>
 		  		</td>

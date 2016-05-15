@@ -1,14 +1,19 @@
 .header {
 /*	background: linear-gradient(180deg, #6a3093, white);
-*/	background-image: url(matterhorn.jpg);
+*/	/*background-image: url(matterhorn.jpg);*/
+	background: rgb(222, 79, 79);
 /*	background-color: grey;
 */	text-align: center;
-	/*color: white;
-	text-transform: color: #eee; font: 15px Helvetica, Arial, Sans-Serif;
+	color: white;
+	/*text-transform: color: #eee; font: 15px Helvetica, Arial, Sans-Serif;
 	     -webkit-transition: all 0.12s ease-out;
 	     -moz-transition: all 0.12s ease-out;
-	     -o-transition: all 0.12s ease-out;
-	text-shadow: 3px 3px 3px #333;*/
+	     -o-transition: all 0.12s ease-out;*/
+	/*text-shadow: 3px 3px 3px #333;*/
+	height: 83px;
+/*	margin-left: 0px;
+	margin-right: 0px;*/
+	width: 104.5%;
 }
 
 nav {
@@ -33,4 +38,60 @@ body {
 }
 .col-xs-12 {
 	background-color: grey;
+}
+
+.challangeImage {
+	width: 100%;
+}
+
+.add {
+	text-align: center;
+	font-weight: bold;
+}
+
+/*#demo {
+	display: none;
+}
+
+label {
+    display: inline-block;
+    background: rgb(222, 79, 79);
+    width: 15%;
+    height: 50px;
+    vertical-align: center;
+    border-left: solid white;
+    color: white;
+}
+
+#demo:checked + label {
+    height: 160px;
+}*/
+
+.menu {
+    background: rgb(222, 79, 79);
+    height: 25px;
+    border: white;
+    width: 100%;
+}
+
+.active {
+	display: inline-block;
+	/*width: 100%;*/
+	text-align: right;
+}
+
+.name {
+	display: inline-block;
+	width: 70%;
+}
+
+.filter {
+	margin: 3px 3% 3px 3%;
+	text-align: center;
+}
+
+.form-control {
+	width: 100%;
+	display: inline-block;
+	text-align: center;
 }
